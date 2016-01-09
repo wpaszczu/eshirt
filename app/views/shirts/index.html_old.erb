@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<%= link_to 'nowa koszulina', new_shirt_path, class: "btn btn-primary" %>
+<br>
+
+<h1>koszuliny </h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>napis</th>
+      <th>rozmiar</th>
+      <th>kolor</th>
+      <th>cena</th>
+      <th>dostępność</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shirts.each do |shirt| %>
+      <tr>
+        <td><%= shirt.inscription %></td>
+        <td><%= shirt.size %></td>
+        <td><%= shirt.color %></td>
+        <td><%= shirt.price %></td>
+        <td><%= shirt.availability %></td>
+        <td><%= link_to 'pokapoka', shirt %></td>
+        <td><%= link_to 'edytowanko', edit_shirt_path(shirt) %></td>
+        <td><%= link_to 'usuwanko', shirt, method: :delete, data: { confirm: 'pewniak?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

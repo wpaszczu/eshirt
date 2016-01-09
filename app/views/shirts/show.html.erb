@@ -1,29 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+<div class="row">
 
-<p>
-  <strong>Inscription:</strong>
-  <%= @shirt.inscription %>
-</p>
+<div class="col-md-6">
+<%= image_tag "shirt1.jpg", class: "img-responsive" %>
+</div>
 
-<p>
-  <strong>Size:</strong>
-  <%= @shirt.size %>
-</p>
+<div class="col-md-6">
+  <ul class="list-group">
+  <li class="list-group-item"><%= @shirt.inscription %></li>
+  <li class="list-group-item"><%= @shirt.color %></li>
+  <li class="list-group-item"><%= @shirt.size %></li>
+  <li class="list-group-item"><%= @shirt.price.to_f / 100 %> zlociszy</li>
+  <li class="list-group-item"><%= link_to "edytowanko", edit_shirt_path(@shirt)  %>
+   | <%= link_to "nazad", shirt_path  %> | <%= link_to "nastepna", shirt_path.next  %></li>
+</ul>
 
-<p>
-  <strong>Color:</strong>
-  <%= @shirt.color %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @shirt.price %>
-</p>
+</div>
 
-<p>
-  <strong>Availability:</strong>
-  <%= @shirt.availability %>
-</p>
-
-<%= link_to 'Edit', edit_shirt_path(@shirt) %> |
-<%= link_to 'Back', shirts_path %>
+</div>
+</div>
