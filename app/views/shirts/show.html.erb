@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Inscription:</strong>
+  <%= @shirt.inscription %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @shirt.size %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @shirt.color %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @shirt.price %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @shirt.availability %>
+</p>
+
+<%= link_to 'Edit', edit_shirt_path(@shirt) %> |
+<%= link_to 'Back', shirts_path %>
