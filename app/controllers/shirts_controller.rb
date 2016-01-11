@@ -1,4 +1,5 @@
 class ShirtsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_shirt, only: [:show, :edit, :update, :destroy]
 
   # GET /shirts
@@ -25,18 +26,24 @@ class ShirtsController < ApplicationController
   # POST /shirts
   # POST /shirts.json
   def create
-    @shirt = Shirt.new(shirt_params)
-
-    respond_to do |format|
-      if @shirt.save
-        format.html { redirect_to @shirt, notice: 'Shirt was successfully created.' }
-        format.json { render :show, status: :created, location: @shirt }
-      else
-        format.html { render :new }
-        format.json { render json: @shirt.errors, status: :unprocessable_entity }
-      end
-    end
+    @shirt = current_user.shirts.new(shirt_params)
+    @shirt.save
+    respond_with(@shirt)
   end
+
+  # def create
+  #   @shirt = Shirt.new(shirt_params)
+  #
+  #   respond_to do |format|
+  #     if @shirt.save
+  #       format.html { redirect_to @shirt, notice: 'Shirt was successfully created.' }
+  #       format.json { render :show, status: :created, location: @shirt }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @shirt.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /shirts/1
   # PATCH/PUT /shirts/1.json
