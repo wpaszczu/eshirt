@@ -6,9 +6,11 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     can :read, :all
-    can :manage, Book do |book|
-      book.try(:user) == user
-    end
+    can :manage, :all
+
+    # Shirt do |shirt|
+    #   shirt.try(:user) == user
+    #  end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
