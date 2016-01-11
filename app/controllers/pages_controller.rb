@@ -4,4 +4,10 @@ class PagesController < ApplicationController
     redirect_to shirts_path
     end
   end
+
+  def dashboard
+    @shirts = current_user.shirts
+  end
+
+
 end
