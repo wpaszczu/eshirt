@@ -21,6 +21,8 @@ class ShirtsController < ApplicationController
 
   # GET /shirts/1/edit
   def edit
+  authorize! :manage, @book
+
   end
 
   # POST /shirts
@@ -48,6 +50,7 @@ class ShirtsController < ApplicationController
   # PATCH/PUT /shirts/1
   # PATCH/PUT /shirts/1.json
   def update
+      authorize! :manage, @book
     respond_to do |format|
       if @shirt.update(shirt_params)
         format.html { redirect_to @shirt, notice: 'Shirt was successfully updated.' }
@@ -62,6 +65,7 @@ class ShirtsController < ApplicationController
   # DELETE /shirts/1
   # DELETE /shirts/1.json
   def destroy
+      authorize! :manage, @book
     @shirt.destroy
     respond_to do |format|
       format.html { redirect_to shirts_url, notice: 'Shirt was successfully destroyed.' }
