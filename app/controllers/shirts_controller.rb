@@ -30,22 +30,18 @@ class ShirtsController < ApplicationController
   def create
     @shirt = current_user.shirts.new(shirt_params)
     @shirt.save
-    respond_with(@shirt)
-  end
+    # respond_with(@shirt)
 
-  # def create
-  #   @shirt = Shirt.new(shirt_params)
-  #
-  #   respond_to do |format|
-  #     if @shirt.save
-  #       format.html { redirect_to @shirt, notice: 'Shirt was successfully created.' }
-  #       format.json { render :show, status: :created, location: @shirt }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @shirt.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+    respond_to do |format|
+      if @shirt.save
+        format.html { redirect_to @shirt, notice: 'Shirt was successfully created.' }
+        format.json { render :show, status: :created, location: @shirt }
+      else
+        format.html { render :new }
+        format.json { render json: @shirt.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /shirts/1
   # PATCH/PUT /shirts/1.json
@@ -76,7 +72,7 @@ class ShirtsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shirt
-      @shirt = Shirt.find(params[:id])
+      @shirt = Shirt.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
